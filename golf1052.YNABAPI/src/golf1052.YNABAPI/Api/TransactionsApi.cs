@@ -993,6 +993,8 @@ namespace golf1052.YNABAPI.Api
             if (data != null && data.GetType() != typeof(byte[]))
             {
                 localVarPostBody = this.Configuration.ApiClient.Serialize(data); // http body (model) parameter
+                // manually add Content-Type header for json
+                localVarHeaderParams["Content-Type"] = "application/json";
             }
             else
             {
@@ -1019,7 +1021,7 @@ namespace golf1052.YNABAPI.Api
             }
 
             return new ApiResponse<TransactionResponse>(localVarStatusCode,
-                localVarResponse.Headers.ToDictionary(x => x.Name, x => x.Value.ToString()),
+                localVarResponse.Headers.HeadersToDictionary(),
                 (TransactionResponse) this.Configuration.ApiClient.Deserialize(localVarResponse, typeof(TransactionResponse)));
         }
 
